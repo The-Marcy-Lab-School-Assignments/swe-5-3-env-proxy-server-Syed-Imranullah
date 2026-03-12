@@ -1,4 +1,4 @@
-const API_KEY = 'How can I include this without exposing it to the public?';
+const API_KEY = 'jmi8dsViZ3rZNGKB3ikvkIgPsss00bSb';
 
 export const getTrendingGifs = async () => {
   try {
