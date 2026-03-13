@@ -1,19 +1,18 @@
-const API_KEY = 'How can I include this without exposing it to the public?';
 
 export const getTrendingGifs = async () => {
   try {
-    const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`);
+    const response = await fetch(`/api/gifs`);
 
     if (!response.ok) {
       throw new Error(`Fetch failed with status - ${response.status}, ${response.statusText}`);
     }
 
-    const responseData = await response.json();
-
-    return { data: responseData, error: null };
+    const data = await response.json();
+  
+    return {data, error: null };
   } catch (error) {
     console.warn(error);
-    return { data: null, error };
+    return { data: null, error }; 
   }
 };
 
