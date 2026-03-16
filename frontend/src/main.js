@@ -9,7 +9,7 @@ const loadTrendingGifs = async () => {
   if (error) {
     return renderError("Sorry, we couldn't fetch the gifs at this time.");
   }
-  renderGifs(data.data);
+  renderGifs(data);
 };
 
 searchForm.addEventListener('submit', async (event) => {
@@ -21,7 +21,7 @@ searchForm.addEventListener('submit', async (event) => {
   if (error) {
     return renderError("Sorry, we couldn't fetch the gifs at this time.");
   }
-  renderGifs(data.data);
+  renderGifs(data);
 });
 
 loadTrendingGifs();
