@@ -76,6 +76,9 @@ const server404 = (req, res, next) => {
     res.status(404).send({error: `Not found: ${req.originalUrl}`})
 }
 
+app.get('/', (req, res) => {
+  res.send('API is running. Use /api/gifs to get GIFs.');
+});
 app.get('/api/gifs', serverGetTrendingGifs)
 app.get('/api/search', serverSearchGifs);
 app.use(server404)
