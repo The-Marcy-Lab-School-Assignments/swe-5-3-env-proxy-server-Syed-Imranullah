@@ -12,7 +12,7 @@ Why is it unsafe to make requests to a third-party API (like Giphy) directly fro
 
 **Your answer here**:
 
----
+It’s unsafe to make requests to a third-party API like Giphy directly from frontend JavaScript because the API key is exposed in the client-side code. Anyone who inspects the network requests or the code can see the key. A user could copy the key and make unauthorized requests, potentially exceeding rate limits or using the key in ways the API provider might block or charge. This creates a security risk because API keys are meant to be secret credentials, not public information.
 
 ## Question 2:
 
@@ -20,7 +20,7 @@ What is the proxy server strategy? How does it help avoid exposing API Keys in c
 
 **Your answer here**:
 
----
+The proxy server strategy involves sending requests to the third-party API through a backend server instead of directly from the frontend. The frontend makes a request to the proxy server, which then attaches the API key and forwards the request to the external API. This keeps the API key hidden from the client and prevents users from seeing or misusing it. It also allows the backend to handle errors or add additional security checks before sending data back to the frontend.
 
 ## Question 3:
 
@@ -28,4 +28,4 @@ What is an environment variable, and why do we store API keys in a .env file ins
 
 **Your answer here**:
 
----
+An environment variable is a way to store sensitive information, like API keys, outside of the source code. We put API keys in a .env file so the keys aren’t hard-coded and visible to anyone who views the code. The .gitignore file tells Git not to track .env, preventing it from being committed to GitHub. If the .env file were accidentally committed, anyone could see the API keys, which could lead to unauthorized access, security breaches, or exceeding API usage limits.
