@@ -38,19 +38,27 @@ app.use(serveStatic);
 /// Controllers
 /////////////////////////
 
-const serverGetTrendingGifs = async (req, res, next) => {
+const serverGetTrendingGifs = async (req, res) => {
     try {
-        const url = `https://api.giphy.com/v1/gifs/trending?limit=3&rating=g&api_key=${process.env.API_KEY}`
-        console.log("GIPHY API KEY:", process.env.API_KEY)
-        const response = await fetch (url)
+        const searchTerm = req.query.q;
+        let url;
+
+        if (searchTerm) {
+            url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${searchTerm}&limit=3&rating=g`;
+        } else {
+            url = `https://api.giphy.com/v1/gifs/trending?limit=3&rating=g&api_key=${process.env.API_KEY}`;
+        }
+
+        const response = await fetch(url);
 
         if (!response.ok) {
-            throw Error (`Fetch failed. ${response.status} ${response.statusText}`)
+            throw new Error(`Fetch failed. ${response.status} ${response.statusText}`);
         }
-        const data = await response.json()
-        res.send(data.data)
-    }catch (error) {
-        res.status(503).send(error)
+
+        const data = await response.json();
+        res.send(data.data);
+    } catch (error) {
+        res.status(503).send(error);
     }
 }
 
